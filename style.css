@@ -1,0 +1,136 @@
+:root {
+    --bg-color: #1a1a2e;
+    --text-color: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-color 0.1s;
+}
+
+/* 画面シェイクエフェクト */
+.shake {
+    animation: shake 0.15s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-3px, 3px, 0) rotate(-1deg); }
+    20%, 80% { transform: translate3d(5px, -3px, 0) rotate(2deg); }
+    30%, 50%, 70% { transform: translate3d(-8px, 5px, 0) rotate(-2deg); }
+    40%, 60% { transform: translate3d(8px, -5px, 0) rotate(1deg); }
+}
+
+/* カウンター表示 */
+#counter {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    z-index: 10;
+}
+
+/* コンボ表示 */
+.combo-text {
+    font-size: 2rem;
+    color: #ffcc00;
+    margin-bottom: 30px;
+    height: 40px;
+    font-weight: 900;
+    text-shadow: 0 0 10px #ff0000;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 巨大ボタン */
+.btn-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+button#praiseBtn {
+    font-size: 2.5rem;
+    font-weight: 900;
+    padding: 30px 60px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+    color: white;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 15px 0 #b3002b, 0 20px 20px rgba(0,0,0,0.4);
+    transition: transform 0.05s, box-shadow 0.05s;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    -webkit-tap-highlight-color: transparent;
+}
+
+button#praiseBtn:active, button#praiseBtn.active {
+    transform: translateY(15px);
+    box-shadow: 0 0 0 #b3002b, 0 5px 10px rgba(0,0,0,0.4);
+}
+
+/* 飛び出す褒め言葉テキスト */
+.popup-text {
+    position: absolute;
+    font-size: 3rem;
+    font-weight: 900;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: popupAnim 1s ease-out forwards;
+    z-index: 5;
+    /* 派手な縁取り */
+    text-shadow: 4px 4px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+@keyframes popupAnim {
+    0% { transform: scale(0.5) translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.5) translateY(-80px) rotate(calc(var(--rot) * 1deg)); opacity: 1; }
+    100% { transform: scale(2) translateY(-150px) rotate(calc(var(--rot) * 2deg)); opacity: 0; }
+}
+
+/* フィーバー時の背景ピカピカ */
+.fever {
+    animation: feverBg 0.1s infinite alternate;
+}
+
+@keyframes feverBg {
+    0% { background-color: #1a1a2e; }
+    100% { background-color: #e94560; }
+}
+
+/* コントロール群 */
+#controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 20;
+}
+
+#controls button {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.2s;
+    margin-left: 10px;
+}
+
+#controls button:hover {
+    background: rgba(255,255,255,0.3);
+}
